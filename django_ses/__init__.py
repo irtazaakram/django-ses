@@ -1,19 +1,14 @@
+import importlib.metadata as importlib_metadata
 import logging
-
-import boto3
-from botocore.vendored.requests.packages.urllib3.exceptions import ResponseError
-from django.core.mail.backends.base import BaseEmailBackend
-from django_ses import settings
-
 from datetime import datetime, timedelta
 from time import sleep
 
+import boto3
+from botocore.vendored.requests.packages.urllib3.exceptions import \
+    ResponseError
+from django.core.mail.backends.base import BaseEmailBackend
 
-try:
-    import importlib.metadata as importlib_metadata
-except ModuleNotFoundError:
-    # Shim for Python 3.7. Remove when support is dropped.
-    import importlib_metadata
+from django_ses import settings
 
 __version__ = importlib_metadata.version(__name__)
 __all__ = ('SESBackend',)
